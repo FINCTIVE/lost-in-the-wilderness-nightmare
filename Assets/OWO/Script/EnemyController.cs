@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemyController : MonoBehaviour
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private EnemyState myEnemyState;
+    private NavMeshAgent myNavMeshAgent;
     #endregion
 
     private enum EnemyBehaviour{ Idle, Chase, Attack }
@@ -25,13 +27,21 @@ public class EnemyController : MonoBehaviour
         myTransform = GetComponent<Transform>();
         modelAnimator = myTransform.Find("Model").GetComponent<Animator>();
         myEnemyState = GetComponent<EnemyState>();
+        myNavMeshAgent = GetComponent<NavMeshAgent>();
+        myNavMeshAgent.updatePosition = false;
+        myNavMeshAgent.updateRotation = false;
     }
 
     private void FixedUpdate()
     {
         Vector3 targetPos = PlayerController.playerTransform.position;
+        
+        myNavMeshAgent.SetDestination(targetPos);
+        myNavMeshAgent.nextPosition = myTransform.position;
+
         float distanceSqr = (targetPos - myTransform.position).sqrMagnitude;
-        Vector3 dirXZ = targetPos - myTransform.position;
+        // Vector3 dirXZ = targetPos - myTransform.position;
+        Vector3 dirXZ = myNavMeshAgent.desiredVelocity;
         dirXZ.y = 0;
         if (distanceSqr > 1) { dirXZ = Vector3.Normalize(dirXZ); }
 

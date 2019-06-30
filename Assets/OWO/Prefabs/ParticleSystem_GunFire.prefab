@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5921241966856553232}
   - component: {fileID: 5921241966856553246}
   - component: {fileID: 5921241966856553233}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: ParticleSystem_GunFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -337,7 +337,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &1398524503883503241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,6 +737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 794f81b5437690b4a98cab46355696a1, type: 2}
     - target: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -781,10 +785,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 794f81b5437690b4a98cab46355696a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
 --- !u!4 &1398524502961174111 stripped
@@ -868,11 +868,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParticleSystem_GunFire
       objectReference: {fileID: 0}
-    - target: {fileID: 5921241966856553235, guid: 79bd74febf9938244bdc9255487bab30,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5921241966856553232, guid: 79bd74febf9938244bdc9255487bab30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -953,11 +948,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ParticleSystem_GunFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 5921241966856553235, guid: 79bd74febf9938244bdc9255487bab30,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5921241966856553232, guid: 79bd74febf9938244bdc9255487bab30,
         type: 3}

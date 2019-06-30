@@ -87,9 +87,9 @@ public class GameManager : MonoBehaviour
         Vector3 euler = rot.eulerAngles;
         rot.eulerAngles = new Vector3(0f, euler.y, 0f);
 
-        GameObject enmey = Instantiate(Enemy, 
-            EnemySpawnPoints[index].position + Vector3.up * 35f,
-            rot);
+        GameObject enmey = Instantiate(Enemy,EnemySpawnPoints[index].position + Vector3.up * 5f, rot);
+        enmey.GetComponent<Rigidbody>().AddForce(Vector3.up *(-30f), ForceMode.VelocityChange);
+        // GameObject enmey = Instantiate(Enemy,EnemySpawnPoints[index].position + Vector3.up, rot);
 
         spawnEnemyCoro = StartCoroutine(SpawnEnemy(waitingTimeBase, randomTime));
     }

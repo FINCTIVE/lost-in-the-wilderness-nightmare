@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 680982318924194912}
   - component: {fileID: 680982318908989728}
   - component: {fileID: 680982318909085824}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Skull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4686,7 +4686,7 @@ GameObject:
   - component: {fileID: 680982318924194914}
   - component: {fileID: 680982318908989730}
   - component: {fileID: 680982318909085826}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Inner Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9361,7 +9361,7 @@ GameObject:
   - component: {fileID: 680982318924194916}
   - component: {fileID: 680982318908989732}
   - component: {fileID: 680982318909085828}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Smoke Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14064,7 +14064,7 @@ GameObject:
   - component: {fileID: 680982318908989734}
   - component: {fileID: 680982318909085830}
   - component: {fileID: 680982318917586342}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: ParticleSystem_EnemyDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}

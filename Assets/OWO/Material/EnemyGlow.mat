@@ -9,12 +9,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: EnemyGlow
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -77,7 +78,7 @@ Material:
     - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EmissionLM: 0
     - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
@@ -86,7 +87,7 @@ Material:
     - _MKGlowPower: 2.29
     - _MKGlowTexStrength: 1.9
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
@@ -100,10 +101,10 @@ Material:
     - _Strength: 0.2
     - _UVSec: 0
     - _UseUIAlphaClip: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.8396226, g: 0.2838161, b: 0, a: 1}
-    - _EmissionColor: {r: 0.745283, g: 0.16951536, b: 0, a: 1}
+    - _Color: {r: 0.8392157, g: 0.2685646, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 0.2263158, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _MKGlowColor: {r: 0.8773585, g: 0.120016046, b: 0.24485871, a: 1}
     - _MKGlowTexColor: {r: 0.6698113, g: 0.32898232, b: 0.17377181, a: 1}

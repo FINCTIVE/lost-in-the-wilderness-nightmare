@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 5670138337406979258}
   - component: {fileID: 5670138337406979253}
   - component: {fileID: 1776634292}
+  - component: {fileID: 1403375912}
   m_Layer: 0
   m_Name: Enemy_Explosion
   m_TagString: Enemy
@@ -204,7 +205,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &5670138337406979258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,13 +221,13 @@ MonoBehaviour:
   hp: 100
   moveSpeed: 3
   rotateSpeed: 6
-  startChasingDistance: 4
-  stopChasingDistance: 10
-  startAttackingDistance: 2
-  stopAttackingDistance: 4.5
+  startChasingDistance: 100
+  stopChasingDistance: 100
+  startAttackingDistance: 1
+  stopAttackingDistance: 3
   explosionWaitingTime: 4
   explosionDamage: 20
-  recoilVelocity: 5
+  recoilVelocity: 10
   isDead: 0
   isExploded: 0
 --- !u!114 &5670138337406979253
@@ -261,6 +262,28 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!195 &1403375912
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670138337406979254}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.68
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5670138337691711291
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bc54d41818af11840b682afaf69f064f, type: 2}
     - target: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -582,10 +609,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bc54d41818af11840b682afaf69f064f, type: 2}
     - target: {fileID: 13700002, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

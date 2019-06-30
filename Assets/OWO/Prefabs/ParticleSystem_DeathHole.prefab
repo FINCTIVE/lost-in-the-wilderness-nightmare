@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2178103240005756321}
   - component: {fileID: 2178103240005655553}
   - component: {fileID: 2178103240013924641}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: ParticleSystem_DeathHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4729,7 +4729,7 @@ GameObject:
   - component: {fileID: 2178103240019910883}
   - component: {fileID: 2178103240005756323}
   - component: {fileID: 2178103240005655555}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: CFX3 Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9373,7 +9373,7 @@ GameObject:
   - component: {fileID: 2178103240019910885}
   - component: {fileID: 2178103240005756325}
   - component: {fileID: 2178103240005655557}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: CFX3 Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}

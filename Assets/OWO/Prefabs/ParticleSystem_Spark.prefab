@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7730725646571967969}
   - component: {fileID: 7636042370256863095}
   - component: {fileID: 7602745439154332979}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: ParticleSystem_Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4678,7 +4678,7 @@ GameObject:
   - component: {fileID: 7730896565183693709}
   - component: {fileID: 7603728563803192015}
   - component: {fileID: 7603384217172664689}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
