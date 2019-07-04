@@ -160,8 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   ammo: 0
-  damage: 12
-  recoilForce: 2
+  damage: 70
+  recoilForce: 1
   FirePoint: {fileID: 1398524503878248707}
   Bullet: {fileID: 4364570842422503993, guid: 38cae2a43034fdb42b20cce1d18da2a1, type: 3}
   GunFire: {fileID: 8303405344588963979}
@@ -247,8 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 2
   ammo: 0
-  damage: 20
-  recoilForce: 2
+  damage: 120
+  recoilForce: 1
   FirePoint: {fileID: 1398524502393209245}
   Bullet: {fileID: 4364570842422503993, guid: 6011b0f4c937e8c40b26f56bd4376cc9, type: 3}
   GunFire: {fileID: 1398524503375366420}
@@ -376,7 +376,7 @@ MonoBehaviour:
   - {fileID: 1398524503065044222}
   - {fileID: 1398524503192079980}
   - {fileID: 1398524503448765975}
-  aimingDistance: 5
+  aimingDistance: 7
   aimingAngle: 30
 --- !u!136 &1387927403
 CapsuleCollider:
@@ -599,6 +599,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300006, guid: bafe1e4d156ffe945aa89b304a97f261, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1aa329960fc39aa4490b3a9e7e965fa8, type: 2}
+    - target: {fileID: 2300002, guid: bafe1e4d156ffe945aa89b304a97f261, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f06e318c92984042a9074c734738fb7, type: 2}
     - target: {fileID: 400008, guid: bafe1e4d156ffe945aa89b304a97f261, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.046
@@ -674,6 +682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machinegun
       objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: c52425aa7c1a7b849a483f7cc99974de, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1aa329960fc39aa4490b3a9e7e965fa8, type: 2}
     - target: {fileID: 400000, guid: c52425aa7c1a7b849a483f7cc99974de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -737,10 +749,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 794f81b5437690b4a98cab46355696a1, type: 2}
     - target: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -785,6 +793,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 794f81b5437690b4a98cab46355696a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
 --- !u!4 &1398524502961174111 stripped

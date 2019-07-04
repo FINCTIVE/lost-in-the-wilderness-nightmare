@@ -11,7 +11,7 @@ public class EnemyState : MonoBehaviour
     public float stopAttackingDistance;
     public float explosionWaitingTime;
     public int explosionDamage;
-    public float recoilVelocity;
+    public float explosionDistance;
     public bool isDead = false;
     public bool isExploded = false;
 }

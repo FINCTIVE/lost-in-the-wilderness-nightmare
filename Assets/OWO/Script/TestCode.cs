@@ -19,6 +19,10 @@ public class TestCode : MonoBehaviour
             testU();
             testP();
         }
+        if(isTesting)
+        {
+            testText.gameObject.SetActive(true);
+        }
     }
     void testP(){
         PlayerController.player.GetComponent<PlayerState>().hp = 10000;

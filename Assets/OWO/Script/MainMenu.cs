@@ -6,26 +6,26 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public TMPro.TMP_InputField nameInputField;
+    public InputField nameInputField;
     public void Awake(){
-        PlayerSettingsManager.InitPlayerSettings();
-        nameInputField.text = PlayerSettingsManager.playerInfo.name;
+        PlayerDataManager.InitPlayerSettings();
+        nameInputField.text = PlayerDataManager.singleton.name;
     }
     public void StartGame(){
-        if(PlayerSettingsManager.playerInfo.name == "")
+        if(PlayerDataManager.singleton.name == "")
         {
-            PlayerSettingsManager.playerInfo.name = "一个懒得改昵称的人";
+            PlayerDataManager.singleton.name = "一个懒得改昵称的人";
         }
-        PlayerSettingsManager.SavePlayerSettings();
+        PlayerDataManager.SavePlayerSettings();
         SceneManager.LoadScene(1);
     }
 
     public void QuitGame(){
-        PlayerSettingsManager.SavePlayerSettings();
+        PlayerDataManager.SavePlayerSettings();
         Application.Quit();
     }
 
     public void ChangePlayerName(string name){
-        PlayerSettingsManager.playerInfo.name = name;
+        PlayerDataManager.singleton.name = name;
     }
 }

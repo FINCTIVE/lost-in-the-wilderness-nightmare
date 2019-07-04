@@ -7,7 +7,7 @@ public class KillingZone : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
-            other.GetComponent<EnemyController>().GetDamage(10000);
+            other.GetComponent<EnemyController>().GetDamage(10000, 0f);
         }
         else if(other.tag == "Player")
         {

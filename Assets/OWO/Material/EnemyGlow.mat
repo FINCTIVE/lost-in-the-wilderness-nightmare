@@ -104,7 +104,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 0.8392157, g: 0.2685646, b: 0, a: 1}
-    - _EmissionColor: {r: 1, g: 0.2263158, b: 0, a: 1}
+    - _EmissionColor: {r: 1.319508, g: 0.3001234, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _MKGlowColor: {r: 0.8773585, g: 0.120016046, b: 0.24485871, a: 1}
     - _MKGlowTexColor: {r: 0.6698113, g: 0.32898232, b: 0.17377181, a: 1}

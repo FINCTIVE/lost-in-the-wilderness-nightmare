@@ -10,16 +10,21 @@ public class PlayerController : MonoBehaviour
     public Text Text_Pistol_Ammo;
     public Text Text_Rifle_Ammo;
     public Slider Slider_Health;
-    public AudioSource audio_shoot;
-    public AudioSource audio_pickup;
+    public Image HealthFill;
+    public Color WarmBloodColor;
+    public Color ColdBloodColor;
+    public Transform HeatPoint; //热源中心
     public GameObject ParticleSystem_Death;
 
 
     public Weapon[] Weapons;
     private int myWeaponId = 0; // 空手
-    public float aimingDistance;
-    public float aimingAngle;
-    
+    public float aimingDistance; // 辅助瞄准的最远距离
+    public float aimingAngle; // 辅助瞄准视角大小
+    public float getColdDistanceStart; // 开始计算寒冷伤害的距离
+    public float getColdDistanceEnd; // 往后因寒冷受伤的伤害值一样
+    public float gettingColdDamagePerSec;
+
     private Animator myAnimator;
     private Rigidbody myRigidbody;
     private Transform myTransform;
@@ -46,9 +51,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 dirXZ = Vector3.zero; //单位向量
     private Vector3 rawDirXZ = Vector3.zero; //未经处理的输入向量
     private bool fire = false;
+    private bool fireHold = false;
     private bool nextWeapon = false;
     private bool lastWeapon = false;
-
 
     private void Update()
     {
@@ -60,9 +65,19 @@ public class PlayerController : MonoBehaviour
         if (dirXZ.sqrMagnitude > 1f) {
             dirXZ = Vector3.Normalize(dirXZ);//限制向量的模长度小于等于1
         }
+
         if(Input.GetButtonDown("Fire"))
         {
-            fire = true;
+            fire = true; //点射将会直接开火 第一发子弹不受射速限制
+        }
+
+        if(Input.GetButton("Fire"))
+        {
+            fireHold = true;
+        }
+        else
+        {
+            fireHold = false;
         }
 
         if (Input.GetButtonDown("LastWeapon"))
@@ -75,6 +90,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //State
+    private float fireTimer=0f;
     void FixedUpdate()
     {
         #region 移动 转身
@@ -88,6 +105,14 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
+        if(fireHold){
+            fireTimer += Time.deltaTime;
+            if(fireTimer > Weapons[myWeaponId].rate)
+            {
+                fire = true;
+                fireTimer = 0f;
+            }
+        }
         if (fire && Weapons[myWeaponId].weaponType != Weapon.WeaponType.EmptyHands)
         {
             #region 辅助瞄准
@@ -97,16 +122,16 @@ public class PlayerController : MonoBehaviour
             Vector3 aimingDir = Weapons[myWeaponId].FirePoint.forward;
             aimingDir.y = 0;
 
+
+            Transform targetEnemy = null;
             if (hitColliders.Length > 0)
             {
                 //寻找夹角范围内距离最近的敌人
-                Transform targetEnemy = null;
                 for (int i = 0; i < hitColliders.Length; ++i)
                 {
                     if (hitColliders[i].tag != "Enemy") continue;
                     Vector3 ePos = hitColliders[i].GetComponent<Transform>().position;
-                    if (Mathf.Abs(Vector3.Angle(ePos - myTransform.position, Weapons[myWeaponId].FirePoint.forward))
-                        < aimingAngle)
+                    if (Mathf.Abs(Vector3.Angle(ePos - myTransform.position, Weapons[myWeaponId].FirePoint.forward)) < aimingAngle)
                     {
                         if (targetEnemy == null)
                         {
@@ -124,24 +149,20 @@ public class PlayerController : MonoBehaviour
                     aimingDir = targetEnemy.position - myTransform.position;
                     aimingDir.y = 0;
                     fireRot = Quaternion.LookRotation(aimingDir, Weapons[myWeaponId].FirePoint.up);
-
-                    //敌人受到打击
-                    EnemyController enemyController = targetEnemy.GetComponent<EnemyController>();
-                    if (enemyController != null)
-                    {
-                        enemyController.GetDamage(Weapons[myWeaponId].damage);
-
-                    }
                 }
             }
             #endregion
             
             #region 开火
-            audio_shoot.Play();
             RaycastHit hit;
-            if(Physics.Raycast(Weapons[myWeaponId].FirePoint.position,
+            if(Physics.Raycast(Weapons[myWeaponId].FirePointDamage.position,
                 aimingDir, out hit))
             {
+                EnemyController enemyController = hit.collider.GetComponent<EnemyController>();
+                if(enemyController != null)
+                {
+                    enemyController.GetDamage(Weapons[myWeaponId].damage, Weapons[myWeaponId].recoilForce*6f);
+                }
                 //击中物体后产生的火花
                 GameObject spark = Instantiate(Weapons[myWeaponId].Spark, 
                     hit.point, Quaternion.identity);
@@ -163,8 +184,9 @@ public class PlayerController : MonoBehaviour
             }
             UpdateWeaponUI();
             #endregion
+
+            fire = false;
         }
-        if (fire) fire = false;
 
         #region 武器切换
         if (nextWeapon || lastWeapon)
@@ -192,19 +214,39 @@ public class PlayerController : MonoBehaviour
         float targetAnimValue_hand = (float)Weapons[myWeaponId].weaponType/((float)Weapons.Length-1f);
         myAnimator.SetFloat("hand", Mathf.Lerp(myAnimator.GetFloat("hand"), targetAnimValue_hand, 20f*Time.deltaTime)); //使用Blend Tree平滑武器切换 平滑变量硬编码
         #endregion
+
+        #region 体温
+        float distanceFromHeat = Vector3.Distance(myTransform.position, HeatPoint.position);
+        float coldRate = 0f;
+        if(distanceFromHeat > getColdDistanceStart)
+        {
+            if(distanceFromHeat < getColdDistanceEnd)
+            {
+                coldRate = (distanceFromHeat - getColdDistanceStart)/(10f-getColdDistanceStart);
+            }
+            else if(distanceFromHeat > getColdDistanceEnd)
+            {
+                coldRate = 1f;
+            }
+            int coldDamage = (int)(coldRate*gettingColdDamagePerSec);
+            GetDamageContinuously(coldDamage);
+        }
+        HealthFill.color = Color.Lerp(WarmBloodColor, ColdBloodColor, coldRate);
+
+        #endregion
     }
 
     private void UpdateWeaponUI(){
         Text_Pistol_Ammo.text = (Weapons[1].ammo).ToString();
         Text_Rifle_Ammo.text = (Weapons[2].ammo).ToString();
     }
+
     public void PickUpWeapon(Weapon.WeaponType weaponType, int ammo)
     {
         foreach(Weapon w in Weapons)
         {
             if(w.weaponType == weaponType)
             {
-                audio_pickup.Play();
                 w.ammo += ammo;
                 break;
             }
@@ -225,6 +267,16 @@ public class PlayerController : MonoBehaviour
         Slider_Health.value = (float)myPlayerState.hp/100f;
     }
 
+    private float getDamageContinuouslyTimer = 0f;
+    public void GetDamageContinuously(int damagePerSec)
+    {
+        getDamageContinuouslyTimer += Time.deltaTime;
+        if(getDamageContinuouslyTimer > 1f)
+        {
+            getDamageContinuouslyTimer -= 1f;
+            GetDamage(damagePerSec);
+        }
+    }
     public void Die()
     {
         myPlayerState.isDead = true;
@@ -232,8 +284,8 @@ public class PlayerController : MonoBehaviour
         myRigidbody.constraints = RigidbodyConstraints.None; //取消限制 自由倒地
         myRigidbody.AddForce(Vector3.up * (-1f) + Vector3.right * (-2f), ForceMode.Impulse); //推一把
         this.enabled = false;
-        Instantiate(ParticleSystem_Death, myTransform.position+Vector3.up*0.2f, ParticleSystem_Death.transform.rotation);
+        Instantiate(ParticleSystem_Death, myTransform.position+Vector3.up*0.2f, ParticleSystem_Death.transform.rotation); // 例子效果 黑暗之门
 
-        GameManager.singleton.PlayerDie();
+        LevelManager.singleton.PlayerDie();
     }
 }

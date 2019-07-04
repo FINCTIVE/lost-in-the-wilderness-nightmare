@@ -219,15 +219,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  moveSpeed: 3
-  rotateSpeed: 6
+  moveSpeed: 2
+  rotateSpeed: 3
   startChasingDistance: 100
   stopChasingDistance: 100
-  startAttackingDistance: 1
+  startAttackingDistance: 2
   stopAttackingDistance: 3
-  explosionWaitingTime: 4
-  explosionDamage: 20
-  recoilVelocity: 10
+  explosionWaitingTime: 1
+  explosionDamage: 25
+  explosionDistance: 4
   isDead: 0
   isExploded: 0
 --- !u!114 &5670138337406979253
@@ -561,10 +561,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bc54d41818af11840b682afaf69f064f, type: 2}
     - target: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -609,6 +605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bc54d41818af11840b682afaf69f064f, type: 2}
     - target: {fileID: 13700002, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

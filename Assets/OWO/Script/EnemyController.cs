@@ -71,9 +71,10 @@ public class EnemyController : MonoBehaviour
                 return;
             }
 
-            myRigidbody.MovePosition(myRigidbody.position + dirXZ*Time.deltaTime*myEnemyState.moveSpeed);
             Quaternion rot = Quaternion.LookRotation(dirXZ, myTransform.up);
             myRigidbody.MoveRotation(Quaternion.Lerp(myRigidbody.rotation, rot,       myEnemyState.rotateSpeed * Time.deltaTime));
+            // myRigidbody.MovePosition(myRigidbody.position + dirXZ*Time.deltaTime*myEnemyState.moveSpeed);
+            myRigidbody.MovePosition(myRigidbody.position + myTransform.forward*Time.deltaTime*myEnemyState.moveSpeed);
 
             modelAnimator.SetFloat("move", dirXZ.magnitude);
         }
@@ -118,9 +119,8 @@ public class EnemyController : MonoBehaviour
             PlayerController player = hitColliders[i].GetComponent<PlayerController>();
             if(player != null)
             {
-                int actualDamage = (int)((float)myEnemyState.explosionDamage *(1 - 
-                    (myTransform.position - hitColliders[i].GetComponent<Transform>().position).sqrMagnitude
-                    / (myEnemyState.startAttackingDistance * myEnemyState.startAttackingDistance)));
+                int actualDamage = (int)((float)myEnemyState.explosionDamage *
+                (1 - Vector3.Distance(myTransform.position, hitColliders[i].GetComponent<Transform>().position)/myEnemyState.explosionDistance));
                 player.GetDamage(actualDamage);
             }
         }
@@ -128,9 +128,9 @@ public class EnemyController : MonoBehaviour
         myEnemyState.isExploded = true;
         Die();
     }
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, float recoilVelocity)
     {
-        myRigidbody.AddForce(myTransform.forward * (-1f) * myEnemyState.recoilVelocity, ForceMode.VelocityChange);
+        myRigidbody.AddForce(myTransform.forward * (-1f) * recoilVelocity, ForceMode.VelocityChange);
         if (myEnemyState.isDead) { return; }
         myEnemyState.hp -= damage;
         if (myEnemyState.hp <= 0)
@@ -148,7 +148,7 @@ public class EnemyController : MonoBehaviour
                 myTransform.position + Vector3.up * 0.2f, Quaternion.identity);
             Destroy(deathParticle, 4f);
         }
-        GameManager.singleton.KillEnemy();
+        LevelManager.singleton.KillEnemy();
         Destroy(gameObject);
     }
 }
