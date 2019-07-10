@@ -15,7 +15,6 @@ public class Weapon : MonoBehaviour
     public float rate;
     public float recoilForce;
     public Transform FirePoint;
-    public Transform FirePointDamage;
     public GameObject Bullet;
     public ParticleSystem GunFire;
     public GameObject Spark;
