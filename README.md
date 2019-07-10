@@ -17,5 +17,7 @@
 这个游戏的玩法来自《BoxHead》
 
 美术资源几乎全部来自Kenny以及JMO的免费素材 
+
 模型：Kenny https://kenney.nl/
+
 粒子效果：JMO https://assetstore.unity.com/publishers/1669
