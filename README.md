@@ -1,6 +1,6 @@
 # 荒野迷踪：噩梦
 
-
+![biubiubiu](https://cdn.ruguoapp.com/lpS2cQEPY5PZd0iJ0k2ShjCkH8yJ.gif)
 
 ## 简介
 
