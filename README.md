@@ -1,6 +1,6 @@
 # 荒野迷踪：噩梦
 
-![](https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g4ulzag2hog30gc08u7wm.jpg)
+![](https://i.loli.net/2019/07/17/5d2efc0e4cf9736048.gif)
 
 ## 简介
 
