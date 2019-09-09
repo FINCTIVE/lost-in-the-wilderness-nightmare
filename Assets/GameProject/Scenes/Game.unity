@@ -4949,9 +4949,9 @@ MonoBehaviour:
   rate: 0.06
   recoilForce: 0.4
   FirePoint: {fileID: 1155727345}
-  Bullet: {fileID: 4364570842422503993, guid: 6011b0f4c937e8c40b26f56bd4376cc9, type: 3}
+  objectPoolTagBulletTrail: BulletTrailRifle
+  objectPoolTagSpark: ParticleSystemSpark
   GunFire: {fileID: 57636728}
-  Spark: {fileID: 7728253816423710845, guid: f137eb12261ac06448b6eeef8ea32565, type: 3}
 --- !u!1 &163177658
 GameObject:
   m_ObjectHideFlags: 0
@@ -11057,6 +11057,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1268865810}
   - component: {fileID: 1268865809}
+  - component: {fileID: 1268865811}
+  - component: {fileID: 1268865812}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11133,6 +11135,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1268865811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268865808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a11dd93139d41a45b3c3258d8ce66f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: BulletTrailPistal
+    prefab: {fileID: 4364570842422503993, guid: 38cae2a43034fdb42b20cce1d18da2a1,
+      type: 3}
+    size: 20
+  - tag: BulletTrailRifle
+    prefab: {fileID: 4364570842422503993, guid: 6011b0f4c937e8c40b26f56bd4376cc9,
+      type: 3}
+    size: 100
+  - tag: EnemyExplosion
+    prefab: {fileID: 5670138337406979254, guid: 308864568a73e0a408e4dbc49cc0e522,
+      type: 3}
+    size: 100
+  - tag: ParticleSystemEnemyDeath
+    prefab: {fileID: 680982318924167238, guid: 68c89d250d51ea547900da42db3f898e, type: 3}
+    size: 35
+  - tag: ParticleSystemExplosion
+    prefab: {fileID: 800394421373936725, guid: c5498771c2a90da49ad342e867b7f14d, type: 3}
+    size: 35
+  - tag: ParticleSystemSpark
+    prefab: {fileID: 7728253816423710845, guid: f137eb12261ac06448b6eeef8ea32565,
+      type: 3}
+    size: 60
+--- !u!114 &1268865812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268865808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acae5c1a87cbc9b4fbf4979dab9a3eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTesting: 1
 --- !u!1 &1288075772
 GameObject:
   m_ObjectHideFlags: 0
@@ -13646,9 +13696,9 @@ MonoBehaviour:
   rate: 1000
   recoilForce: 1
   FirePoint: {fileID: 761698159}
-  Bullet: {fileID: 4364570842422503993, guid: 38cae2a43034fdb42b20cce1d18da2a1, type: 3}
+  objectPoolTagBulletTrail: BulletTrailPistal
+  objectPoolTagSpark: ParticleSystemSpark
   GunFire: {fileID: 6940910738005237479}
-  Spark: {fileID: 7728253816423710845, guid: f137eb12261ac06448b6eeef8ea32565, type: 3}
 --- !u!1 &1972277356
 GameObject:
   m_ObjectHideFlags: 0

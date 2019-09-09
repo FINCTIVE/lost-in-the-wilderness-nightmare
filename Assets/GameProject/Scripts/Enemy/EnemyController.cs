@@ -3,14 +3,15 @@ using System.Collections;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IPooledObject
 {
     public EnemyState enemyState;
+    private EnemyState _initialEnemyState;
     
     #region GameObject
     public GameObject GlowObj;
-    public GameObject ExplosionParticleObj;
-    public GameObject DeathParticleObj;
+    public string objectPoolTagParticleSystemExplosion = "ParticleSystemExplosion";
+    public string objectPoolTagParticleSystemEnemyDeath = "ParticleSystemEnemyDeath";
     #endregion
     #region Component
     public Animator modelAnimator;
@@ -24,13 +25,25 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        _initialEnemyState = new EnemyState();
+        _initialEnemyState.CopyValues(enemyState);
+        
         _rb = GetComponent<Rigidbody>();
         modelAnimator = transform.Find("Model").GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.updatePosition = false;
         _navMeshAgent.updateRotation = false;
     }
+    
+    public void OnObjectSpawn()
+    {
+        enemyState.CopyValues(_initialEnemyState);
+    }
 
+    public void OnObjectDestroy()
+    {
+        
+    }
     private void FixedUpdate()
     {
         Vector3 targetPos = PlayerController.playerTransform.position;
@@ -114,8 +127,8 @@ public class EnemyController : MonoBehaviour
     public void Explode()
     {
         var myPosition = transform.position;
-        Instantiate(ExplosionParticleObj, 
-            myPosition + Vector3.up*1f, Quaternion.identity);
+        ObjectPooler.Instance.SpawnFromPool(objectPoolTagParticleSystemExplosion, myPosition + Vector3.up*1f, Quaternion.identity);
+
         Collider[] hitColliders = Physics.OverlapSphere(myPosition, enemyState.startAttackingDistance);
         for(int i=0; i<hitColliders.Length; ++i)
         {
@@ -147,11 +160,9 @@ public class EnemyController : MonoBehaviour
         enemyState.isDead = true;
         if (enemyState.isExploded == false)
         {
-            GameObject deathParticle = Instantiate(DeathParticleObj,
-                transform.position + Vector3.up * 0.2f, Quaternion.identity);
-            Destroy(deathParticle, 4f);
+            ObjectPooler.Instance.SpawnFromPool(objectPoolTagParticleSystemEnemyDeath,transform.position + Vector3.up * 0.2f, Quaternion.identity);
         }
         LevelManager.singleton.KillEnemy();
-        Destroy(gameObject);
+        ObjectPooler.Instance.DestroyToPool("EnemyExplosion", gameObject);
     }
 }

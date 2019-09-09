@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     public float rate;
     public float recoilForce;
     public Transform FirePoint;
-    public GameObject Bullet;
+    public string objectPoolTagBulletTrail;
+    public string objectPoolTagSpark;
     public ParticleSystem GunFire;
-    public GameObject Spark;
 }

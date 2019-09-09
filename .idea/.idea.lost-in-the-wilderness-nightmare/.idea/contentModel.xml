@@ -15,6 +15,13 @@
             </e>
             <e p="Manager" t="Include">
               <e p="LevelManager.cs" t="Include" />
+              <e p="ObjectPooler" t="Include">
+                <e p="IPooledObject.cs" t="Include" />
+                <e p="ObjectPooler.cs" t="Include" />
+                <e p="ObjPooledAutoDestroy.cs" t="Include" />
+                <e p="ObjPooledParticle.cs" t="Include" />
+              </e>
+              <e p="TestCode.cs" t="Include" />
             </e>
             <e p="Player" t="Include">
               <e p="Backpack.cs" t="Include" />

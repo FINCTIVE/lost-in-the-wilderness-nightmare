@@ -193,11 +193,10 @@ public class PlayerController : MonoBehaviour
                 enemyController.GetDamage(_backpack.weaponInHand.damage, _backpack.weaponInHand.recoilForce * 6f);
             }
             //击中物体后产生的火花
-            GameObject spark = Instantiate(_backpack.weaponInHand.Spark, hit.point, Quaternion.identity);
-            Destroy(spark, 10f);
+            ObjectPooler.Instance.SpawnFromPool(_backpack.weaponInHand.objectPoolTagSpark, hit.point, Quaternion.identity);
         }
         //弹道轨迹(假子弹)
-        GameObject mBullet = Instantiate(_backpack.weaponInHand.Bullet, _backpack.weaponInHand.FirePoint.position, Quaternion.LookRotation(mAmingDir, Vector3.up)) as GameObject;
+        GameObject mBullet = ObjectPooler.Instance.SpawnFromPool(_backpack.weaponInHand.objectPoolTagBulletTrail, _backpack.weaponInHand.FirePoint.position, Quaternion.LookRotation(mAmingDir, Vector3.up)) as GameObject;
         //枪口的闪光粒子特效
         _backpack.weaponInHand.GunFire.Emit(1);
         //后座力
