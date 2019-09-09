@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3804213977089104873}
   - component: {fileID: 5617614591588498534}
-  - component: {fileID: 5342935999425242179}
+  - component: {fileID: 4730546255318051110}
   m_Layer: 0
-  m_Name: Bullet_Pistal
+  m_Name: BulletTrailRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4364570842422503993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.6}
-  m_LocalScale: {x: 0.8165097, y: 0.22557391, z: 0.43943256}
+  m_LocalPosition: {x: 0, y: 0, z: 10.35}
+  m_LocalScale: {x: 0.15368406, y: 0.16426879, z: 0.32000622}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024710180d9e8b04b8cff37c8dd3d7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
---- !u!96 &5342935999425242179
+  objectPoolTag: BulletTrailRifle
+  speed: 120
+--- !u!96 &4730546255318051110
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -71,6 +72,7 @@ TrailRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -92,7 +94,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.14212859
+        value: 0.048080444
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -100,8 +102,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.20347044
-        value: 0.1939586
+        time: 0.42523035
+        value: 0.10742366
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -109,8 +111,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.60887146
-        value: 0.15948442
+        time: 1
+        value: 0.034484416
         inSlope: 0
         outSlope: 0
         tangentMode: 0

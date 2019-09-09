@@ -86,10 +86,9 @@ public class LevelManager : MonoBehaviour
         Vector3 euler = rot.eulerAngles;
         rot.eulerAngles = new Vector3(0f, euler.y, 0f);
 
-        GameObject enmey = Instantiate(EnemyPrefab,EnemySpawnPoints[index].position + Vector3.up * 5f, rot);
-        enmey.GetComponent<Rigidbody>().AddForce(Vector3.up *(-30f), ForceMode.VelocityChange);
-        // GameObject enmey = Instantiate(Enemy,EnemySpawnPoints[index].position + Vector3.up, rot);
-
+        GameObject enmey = ObjectPooler.Instance.SpawnFromPool("EnemyExplosion",EnemySpawnPoints[index].position + Vector3.up * 5f, rot);
+        if(enmey) enmey.GetComponent<Rigidbody>().AddForce(Vector3.up *(-30f), ForceMode.VelocityChange);
+        // ObjectPool队列有可能是空的
         spawnEnemyCoro = StartCoroutine(SpawnEnemy(waitingTimeBase, randomTime));
     }
     IEnumerator SpawnProps(float waitingTimeBase, float randomTime, int propsAmmoPistal, int propsAmmoRifle)
