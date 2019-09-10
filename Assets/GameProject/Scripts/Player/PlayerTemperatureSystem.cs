@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class PlayerTemperatureSystem : MonoBehaviour
 {
-    public float getColdDistanceStart; // 开始计算寒冷伤害的距离
-    public float getColdDistanceEnd; // 往后因寒冷受伤的伤害值一样
-    public float gettingColdDamagePerSec;
+    public int maxColdDamagePerSec;
+    [Tooltip("开始受到寒冷伤害的温度")]public float startGetingColdTemperature;
+    [Tooltip("受到最大寒冷伤害的温度（低于此的温度都受到一样的伤害）")]public float endGetingColdTemperature;
+    
     [Space(10)]
     public Color warmBloodColor;
     public Color coldBloodColor;
     public Image healthFill;
-    public Transform heatPoint; //热源中心
 
     private Transform _transform;
     private PlayerController _playerController;
@@ -27,21 +27,26 @@ public class PlayerTemperatureSystem : MonoBehaviour
     //体温控制
     private void FixedUpdate()
     {
-        float distanceFromHeat = Vector3.Distance(_transform.position, heatPoint.position);
-        float coldRate = 0f;
-        if (distanceFromHeat > getColdDistanceStart)
+        float playerTemperature = 0f;
+        foreach (var campfire in CampfireManager.Instance.campFires)
         {
-            if (distanceFromHeat < getColdDistanceEnd)
-            {
-                coldRate = (distanceFromHeat - getColdDistanceStart) / (10f - getColdDistanceStart);
-            }
-            else if (distanceFromHeat > getColdDistanceEnd)
-            {
-                coldRate = 1f;
-            }
-            int coldDamage = (int)(coldRate * gettingColdDamagePerSec);
-            _playerController.HurtByDamagePerSec(coldDamage);
+            float distanceFromHeat = Vector3.Distance(_transform.position, campfire.transform.position);
+            playerTemperature += Mathf.Max(0f,campfire.temperature * (1-(distanceFromHeat / campfire.heatRadius)));
         }
-        healthFill.color = Color.Lerp(warmBloodColor, coldBloodColor, coldRate);
+
+        int damage = 0;
+        float coldRate = Mathf.Max(0f, (playerTemperature - endGetingColdTemperature)
+                         / (startGetingColdTemperature - endGetingColdTemperature)); // 一次函数
+        if (playerTemperature < endGetingColdTemperature)
+        {
+            damage = maxColdDamagePerSec;
+        }
+        else if (playerTemperature < startGetingColdTemperature)
+        {
+            damage = (int)(maxColdDamagePerSec * coldRate); // 一次函数
+        };
+        _playerController.HurtByDamagePerSec(damage);
+        healthFill.color = Color.Lerp(coldBloodColor, warmBloodColor, coldRate);
+        Debug.Log(playerTemperature);
     }
 }

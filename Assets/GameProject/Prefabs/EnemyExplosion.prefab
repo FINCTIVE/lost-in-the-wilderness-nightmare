@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1776634292}
   - component: {fileID: 1403375912}
   m_Layer: 0
-  m_Name: Enemy_Explosion
+  m_Name: EnemyExplosion
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState:
-    hp: 100
+    hp: 60
     moveSpeed: 2
     rotateSpeed: 3
     startChasingDistance: 100
@@ -233,10 +233,8 @@ MonoBehaviour:
     isDead: 0
     isExploded: 0
   GlowObj: {fileID: 5670138338211652496}
-  ExplosionParticleObj: {fileID: 800394421373936725, guid: c5498771c2a90da49ad342e867b7f14d,
-    type: 3}
-  DeathParticleObj: {fileID: 680982318924167238, guid: 68c89d250d51ea547900da42db3f898e,
-    type: 3}
+  objectPoolTagParticleSystemExplosion: ParticleSystemExplosion
+  objectPoolTagParticleSystemEnemyDeath: ParticleSystemEnemyDeath
   modelAnimator: {fileID: 5670138338578596211}
 --- !u!136 &1776634292
 CapsuleCollider:
@@ -554,6 +552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bc54d41818af11840b682afaf69f064f, type: 2}
     - target: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -598,19 +600,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bc54d41818af11840b682afaf69f064f, type: 2}
-    - target: {fileID: 13700000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
     - target: {fileID: 13700002, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700004, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+    - target: {fileID: 13700000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
@@ -618,11 +612,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700008, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+    - target: {fileID: 13700004, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
     - target: {fileID: 13700010, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 13700008, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}

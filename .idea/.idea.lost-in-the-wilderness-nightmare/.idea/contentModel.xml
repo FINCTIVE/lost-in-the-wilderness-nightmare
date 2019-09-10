@@ -35,6 +35,8 @@
               <e p="Weapon.cs" t="Include" />
             </e>
             <e p="Scene" t="Include">
+              <e p="Campfire.cs" t="Include" />
+              <e p="CampfireManager.cs" t="Include" />
               <e p="KillingZone.cs" t="Include" />
               <e p="KillingZoneContinuously.cs" t="Include" />
             </e>
