@@ -10,24 +10,18 @@ public class PlayerTemperatureSystem : MonoBehaviour
     public int maxColdDamagePerSec;
     [Tooltip("开始受到寒冷伤害的温度")]public float startGetingColdTemperature;
     [Tooltip("受到最大寒冷伤害的温度（低于此的温度都受到一样的伤害）")]public float endGetingColdTemperature;
+    private float playerTemperature = 0f;
     
-    [Space(10)]
-    public Color warmBloodColor;
-    public Color coldBloodColor;
-    public Image healthFill;
-
     private Transform _transform;
-    private PlayerController _playerController;
     private void Awake()
     {
         _transform = transform;
-        _playerController = GetComponent<PlayerController>();
     }
 
     //体温控制
     private void FixedUpdate()
     {
-        float playerTemperature = 0f;
+        playerTemperature = 0f;
         foreach (var campfire in CampfireManager.Instance.campFires)
         {
             float distanceFromHeat = Vector3.Distance(_transform.position, campfire.transform.position);
@@ -35,6 +29,7 @@ public class PlayerTemperatureSystem : MonoBehaviour
         }
 
         int damage = 0;
+        
         float coldRate = Mathf.Max(0f, (playerTemperature - endGetingColdTemperature)
                          / (startGetingColdTemperature - endGetingColdTemperature)); // 一次函数
         if (playerTemperature < endGetingColdTemperature)
@@ -45,8 +40,7 @@ public class PlayerTemperatureSystem : MonoBehaviour
         {
             damage = (int)(maxColdDamagePerSec * coldRate); // 一次函数
         };
-        _playerController.HurtByDamagePerSec(damage);
-        healthFill.color = Color.Lerp(coldBloodColor, warmBloodColor, coldRate);
-        Debug.Log(playerTemperature);
+        PlayerController.player.HurtByDamagePerSec(damage);
+        PlayerController.player.playerState.coldRate = coldRate;
     }
 }

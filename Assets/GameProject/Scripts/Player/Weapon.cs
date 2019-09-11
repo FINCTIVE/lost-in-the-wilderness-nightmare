@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public enum WeaponType
@@ -8,7 +9,19 @@ public class Weapon : MonoBehaviour
     }
 
     public WeaponType weaponType = WeaponType.Pistol;
-    public int ammo = 0;
+    private int _ammo = 0;
+    public event Action<int> OnAmmoChange; 
+    public int ammo
+    {
+        get => _ammo;
+        set
+        { 
+            _ammo = value;
+            if (OnAmmoChange != null)
+                OnAmmoChange(_ammo);
+        }
+    }
+
     public int damage = 0;
     public float rate;
     public float recoilForce;

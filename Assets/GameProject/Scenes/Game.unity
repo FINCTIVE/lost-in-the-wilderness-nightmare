@@ -4944,7 +4944,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 1
-  ammo: 0
   damage: 12
   rate: 0.06
   recoilForce: 0.4
@@ -8054,6 +8053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 723195459}
+  - component: {fileID: 723195460}
   m_Layer: 5
   m_Name: Panel_Backpack
   m_TagString: Untagged
@@ -8082,6 +8082,22 @@ RectTransform:
   m_AnchoredPosition: {x: 104.15, y: 85.7}
   m_SizeDelta: {x: 208.3, y: 171.3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &723195460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723195458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f4352d88c97e41b59094de42e7ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistalAmmoText: {fileID: 1163240182}
+  rifleAmmoText: {fileID: 297998233}
+  pistal: {fileID: 1950396416}
+  rifle: {fileID: 126843003}
 --- !u!33 &723814585
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8434,13 +8450,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState:
-    hp: 100
-    temperature: 0
     moveSpeed: 7
     isDead: 0
   aimingDistance: 7
   aimingAngle: 30
-  Slider_Health: {fileID: 1974163871}
   ParticleSystem_Death: {fileID: 2178103240019950785, guid: 63d357d90e1ecdc429755fca0a44b6b6,
     type: 3}
 --- !u!114 &764864741
@@ -8458,9 +8471,6 @@ MonoBehaviour:
   maxColdDamagePerSec: 7
   startGetingColdTemperature: 100
   endGetingColdTemperature: 20
-  warmBloodColor: {r: 1, g: 0.3647059, b: 0.3647059, a: 1}
-  coldBloodColor: {r: 0.427451, g: 0.5921569, b: 1, a: 1}
-  healthFill: {fileID: 1333916431}
 --- !u!114 &764864742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8477,8 +8487,6 @@ MonoBehaviour:
   weapons:
   - {fileID: 1950396416}
   - {fileID: 126843003}
-  textPistolAmmo: {fileID: 1163240182}
-  textRifleAmmo: {fileID: 297998233}
 --- !u!4 &764864743
 Transform:
   m_ObjectHideFlags: 0
@@ -12585,6 +12593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1704694940}
   - component: {fileID: 1974163871}
+  - component: {fileID: 1704694941}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -12613,6 +12622,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 21.43}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1704694941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704694939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35680e6346038114e87f25142a5058ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 1974163871}
+  hpFill: {fileID: 1333916431}
+  warmBloodColor: {r: 1, g: 0.3647059, b: 0.3647059, a: 1}
+  coldBloodColor: {r: 0.427451, g: 0.5921569, b: 1, a: 1}
 --- !u!1 &1719054264
 GameObject:
   m_ObjectHideFlags: 0
@@ -13675,7 +13700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
-  ammo: 0
   damage: 20
   rate: 1000
   recoilForce: 1

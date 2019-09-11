@@ -9,9 +9,7 @@ public class Backpack : MonoBehaviour
     public Weapon weaponInHand = null;
     private int _weaponIndex = 0;
     public List<Weapon> weapons;
-    [Header("对象引用")]
-    public Text textPistolAmmo;
-    public Text textRifleAmmo;
+
     void Awake()
     {
         foreach (Weapon w in weapons)
@@ -56,15 +54,9 @@ public class Backpack : MonoBehaviour
                 break;
             }
         }
-        UpdateWeaponUi();
         if (weaponInHand == null)
         {
             PlayerController.player.SwapWeapon(true);
         }
-    }
-    public void UpdateWeaponUi()
-    {
-        textPistolAmmo.text = (weapons[0].ammo).ToString();
-        textRifleAmmo.text = (weapons[1].ammo).ToString();
     }
 }

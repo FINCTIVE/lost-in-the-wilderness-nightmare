@@ -10,15 +10,11 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController player;
     public static Transform playerTransform;
-    
     public PlayerState playerState;
         
     [Tooltip("辅助瞄准的最远距离")]public float aimingDistance; // 
     [Tooltip("辅助瞄准视角大小")]public float aimingAngle;
     
-    [Header("对象引用")]
-    public Slider Slider_Health;
-
     public GameObject ParticleSystem_Death;
     
     //组件引用缓存
@@ -99,8 +95,6 @@ public class PlayerController : MonoBehaviour
             {
                 _iNextWeapon = true;
             }
-            _backpack.UpdateWeaponUi();
-
             _fire = false;
         }
 
@@ -238,7 +232,6 @@ public class PlayerController : MonoBehaviour
             playerState.hp = 0;
             Die();
         }
-        Slider_Health.value = (float)playerState.hp / 100f;
     }
 
     private float _hurtPerSecTimer = 0f;

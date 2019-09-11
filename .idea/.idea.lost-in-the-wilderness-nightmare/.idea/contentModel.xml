@@ -32,6 +32,10 @@
               <e p="PlayerTemperatureSystem.cs" t="Include" />
               <e p="PlayerUIFollow.cs" t="Include" />
               <e p="Props.cs" t="Include" />
+              <e p="UI" t="Include">
+                <e p="BackPackItemUI.cs" t="Include" />
+                <e p="PlayerHpUI.cs" t="Include" />
+              </e>
               <e p="Weapon.cs" t="Include" />
             </e>
             <e p="Scene" t="Include">
