@@ -4,6 +4,7 @@ using System.Collections;
 public class KillingZoneContinuously : MonoBehaviour
 {
     public int damagePerSec;
+    public DamageFrom damageFrom;
     private float _timer = 0f;
     private void OnTriggerStay(Collider other)
     {
@@ -17,7 +18,7 @@ public class KillingZoneContinuously : MonoBehaviour
             }
             else if(other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerController>().Hurt(damagePerSec);
+                other.GetComponent<PlayerController>().Hurt(damagePerSec, damageFrom);
             }
         }
     }

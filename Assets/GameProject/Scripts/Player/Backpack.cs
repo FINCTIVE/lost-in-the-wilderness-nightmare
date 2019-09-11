@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System;
 
 public class Backpack : MonoBehaviour
 {
     public Weapon weaponInHand = null;
     private int _weaponIndex = 0;
     public List<Weapon> weapons;
-
+    public event Action<int, Weapon.WeaponType> OnSwapWeapon;
     void Awake()
     {
         foreach (Weapon w in weapons)
@@ -41,7 +42,11 @@ public class Backpack : MonoBehaviour
         
         weapons[lastWeaponIndex].gameObject.SetActive(false);
         if (weaponInHand != null)
+        {
             weaponInHand.gameObject.SetActive(true);
+            if (OnSwapWeapon != null)
+                OnSwapWeapon(weaponInHand.ammo, weaponInHand.weaponType);
+        }
     }
     
     public void PickUpWeapon(Weapon.WeaponType weaponType, int ammo)

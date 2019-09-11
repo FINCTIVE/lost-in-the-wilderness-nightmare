@@ -34,6 +34,7 @@
               <e p="Props.cs" t="Include" />
               <e p="UI" t="Include">
                 <e p="BackPackItemUI.cs" t="Include" />
+                <e p="GameOverUI.cs" t="Include" />
                 <e p="PlayerHpUI.cs" t="Include" />
               </e>
               <e p="Weapon.cs" t="Include" />

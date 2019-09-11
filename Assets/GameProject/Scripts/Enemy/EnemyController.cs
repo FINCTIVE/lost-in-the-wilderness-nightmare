@@ -137,7 +137,7 @@ public class EnemyController : MonoBehaviour, IPooledObject
             {
                 int actualDamage = (int)((float)enemyState.explosionDamage *
                 (1 - Vector3.Distance(transform.position, hitColliders[i].GetComponent<Transform>().position)/enemyState.explosionDistance));
-                player.Hurt(actualDamage);
+                player.Hurt(actualDamage, DamageFrom.Enemy);
             }
         }
         enemyState.hp = 0;

@@ -1,8 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+
+public enum DamageFrom
+{
+    Enemy,
+    Fire,
+    Cold
+}
 /// <summary>
 /// 组件功能：移动，开火，与武器管理系统、玩家状态系统交互。
 /// </summary>
@@ -11,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController player;
     public static Transform playerTransform;
     public PlayerState playerState;
-        
+    
     [Tooltip("辅助瞄准的最远距离")]public float aimingDistance; // 
     [Tooltip("辅助瞄准视角大小")]public float aimingAngle;
     
@@ -23,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Transform _transform;
     private Backpack _backpack;
 
+    public event Action<DamageFrom> OnPlayerDie;
+    
     void Awake()
     {
         playerTransform = GetComponent<Transform>();
@@ -222,7 +232,7 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    public void Hurt(int damage)
+    public void Hurt(int damage, DamageFrom attacker)
     {
         if (playerState.isDead) return;
 
@@ -230,23 +240,23 @@ public class PlayerController : MonoBehaviour
         if (playerState.hp <= 0)
         {
             playerState.hp = 0;
-            Die();
+            Die(attacker);
         }
     }
 
     private float _hurtPerSecTimer = 0f;
 
-    public void HurtByDamagePerSec(int damagePerSec)
+    public void HurtByDamagePerSec(int damagePerSec, DamageFrom attacker)
     {
         _hurtPerSecTimer += Time.deltaTime;
         if (_hurtPerSecTimer > 1f)
         {
             _hurtPerSecTimer -= 1f;
-            Hurt(damagePerSec);
+            Hurt(damagePerSec, attacker);
         }
     }
     
-    public void Die()
+    public void Die(DamageFrom attacker)
     {
         playerState.isDead = true;
         //死亡过程硬编码
@@ -254,7 +264,8 @@ public class PlayerController : MonoBehaviour
         _rigidbody.AddForce(Vector3.up * (-1f) + Vector3.right * (-2f), ForceMode.Impulse); //推一把
         this.enabled = false;
         Instantiate(ParticleSystem_Death, _transform.position + Vector3.up * 0.2f, ParticleSystem_Death.transform.rotation); // 例子效果 黑暗之门
-
+        if (OnPlayerDie != null)
+            OnPlayerDie(attacker);
         LevelManager.singleton.PlayerDie();
     }
 }

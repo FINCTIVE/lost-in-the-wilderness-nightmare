@@ -3,6 +3,7 @@ using System.Collections;
 
 public class KillingZone : MonoBehaviour
 {
+    public DamageFrom damageFrom;
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Enemy"))
@@ -11,7 +12,7 @@ public class KillingZone : MonoBehaviour
         }
         else if(other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().Hurt(10000);
+            other.GetComponent<PlayerController>().Hurt(10000, damageFrom);
         }
     }
 }
