@@ -6084,6 +6084,7 @@ GameObject:
   - component: {fileID: 344868186}
   - component: {fileID: 344868185}
   - component: {fileID: 344868189}
+  - component: {fileID: 344868190}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6191,6 +6192,21 @@ MonoBehaviour:
   wordsDieOfCold: "...\u597D\u51B7..."
   wordsDieOfEnemy: "\u50F5\u5C38\u70B8\u7126\u4E86\u4F60\u7684\u8111\u5B50"
   wordsDieOfFire: "...\u4F60\u6C90\u6D74\u5728\u5149\u8292\u4E2D\u8FDC\u79BB\u4E86\u9ED1\u6697"
+--- !u!114 &344868190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344868184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f4352d88c97e41b59094de42e7ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 1163240182}
+  pistal: {fileID: 1950396416}
+  rifle: {fileID: 126843003}
 --- !u!1 &352508909
 GameObject:
   m_ObjectHideFlags: 0
@@ -7683,6 +7699,7 @@ GameObject:
   - component: {fileID: 629648832}
   - component: {fileID: 629648831}
   - component: {fileID: 629648830}
+  - component: {fileID: 629648835}
   m_Layer: 5
   m_Name: PlayerUICanvas
   m_TagString: Untagged
@@ -7792,6 +7809,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &629648835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629648828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35680e6346038114e87f25142a5058ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 1974163871}
+  hpFill: {fileID: 1333916431}
+  warmBloodColor: {r: 1, g: 0.3647059, b: 0.3647059, a: 1}
+  coldBloodColor: {r: 0.427451, g: 0.5921569, b: 1, a: 1}
 --- !u!1 &647447002
 GameObject:
   m_ObjectHideFlags: 0
@@ -8075,7 +8108,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 723195459}
-  - component: {fileID: 723195460}
   m_Layer: 5
   m_Name: Panel_Backpack
   m_TagString: Untagged
@@ -8104,21 +8136,6 @@ RectTransform:
   m_AnchoredPosition: {x: 104.15, y: 85.7}
   m_SizeDelta: {x: 208.3, y: 171.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &723195460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723195458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5f4352d88c97e41b59094de42e7ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoText: {fileID: 1163240182}
-  pistal: {fileID: 1950396416}
-  rifle: {fileID: 126843003}
 --- !u!33 &723814585
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8470,7 +8487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 267424ef77dfe0a4da0bba8355f6d040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState:
+  playerInfo:
     moveSpeed: 7
     isDead: 0
   aimingDistance: 7
@@ -12920,7 +12937,7 @@ PrefabInstance:
     - target: {fileID: 8748645585558591172, guid: 17b563fa70f0e814aaedb50401ca0b05,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8748645585558591172, guid: 17b563fa70f0e814aaedb50401ca0b05,
         type: 3}
@@ -12967,15 +12984,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8748645585568958400, guid: 17b563fa70f0e814aaedb50401ca0b05,
-        type: 3}
-      propertyPath: m_Shadows.m_Bias
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7838259586104586161, guid: 17b563fa70f0e814aaedb50401ca0b05,
         type: 3}
       propertyPath: damageFrom
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748645585568958400, guid: 17b563fa70f0e814aaedb50401ca0b05,
+        type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b563fa70f0e814aaedb50401ca0b05, type: 3}
@@ -13031,7 +13048,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1704694940}
   - component: {fileID: 1974163871}
-  - component: {fileID: 1704694941}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -13060,22 +13076,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 21.43}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1704694941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704694939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35680e6346038114e87f25142a5058ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSlider: {fileID: 1974163871}
-  hpFill: {fileID: 1333916431}
-  warmBloodColor: {r: 1, g: 0.3647059, b: 0.3647059, a: 1}
-  coldBloodColor: {r: 0.427451, g: 0.5921569, b: 1, a: 1}
 --- !u!1 &1719054264
 GameObject:
   m_ObjectHideFlags: 0
@@ -16901,7 +16901,7 @@ PrefabInstance:
     - target: {fileID: 8748645585558591172, guid: 17b563fa70f0e814aaedb50401ca0b05,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8748645585558591172, guid: 17b563fa70f0e814aaedb50401ca0b05,
         type: 3}
@@ -16987,6 +16987,75 @@ Transform:
   m_Father: {fileID: 2077642655}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4471035165073374953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5670138337406979254, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670138337406979256, guid: 308864568a73e0a408e4dbc49cc0e522,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 308864568a73e0a408e4dbc49cc0e522, type: 3}
 --- !u!1 &6274184122682460830
 GameObject:
   m_ObjectHideFlags: 0

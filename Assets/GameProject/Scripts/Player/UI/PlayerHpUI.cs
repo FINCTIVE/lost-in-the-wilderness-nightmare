@@ -13,8 +13,8 @@ public class PlayerHpUI : MonoBehaviour
 
     void Start()
     {
-        PlayerController.player.playerState.OnPlayerHpChange += _OnPlayerHpChange;
-        PlayerController.player.playerState.OnPlayerColdRateChange += _OnPlayerColdRateChange;
+        PlayerController.player.playerInfo.OnPlayerHpChange += _OnPlayerHpChange;
+        PlayerController.player.playerInfo.OnPlayerColdRateChange += _OnPlayerColdRateChange;
     }
 
     private void _OnPlayerHpChange(int hp)

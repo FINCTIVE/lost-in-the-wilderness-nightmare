@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public class EnemyState
+public class EnemyInfo
 {
     public int hp = 100;
     public float moveSpeed = 2f;
@@ -14,7 +14,7 @@ public class EnemyState
     public bool isDead = false;
     public bool isExploded = false;
 
-    public void CopyValues(EnemyState copyFrom)
+    public void CopyValues(EnemyInfo copyFrom)
     {
         hp = copyFrom.hp;
         moveSpeed = copyFrom.moveSpeed;

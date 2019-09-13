@@ -17,7 +17,7 @@ public class TestCode : MonoBehaviour
                 w.ammo = 1000;
             }
 
-            PlayerController.player.playerState.hp = 10000000;
+            PlayerController.player.playerInfo.hp = 10000000;
         }
     }
 }

@@ -166,9 +166,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5670138337406979256}
   - component: {fileID: 5670138337406979252}
-  - component: {fileID: 5670138337406979253}
   - component: {fileID: 1776634292}
   - component: {fileID: 1403375912}
+  - component: {fileID: 8275669782284254900}
+  - component: {fileID: 1401441915122675128}
+  - component: {fileID: 2195253480749829900}
+  - component: {fileID: 7827727712382213088}
+  - component: {fileID: 4111574475602110449}
   m_Layer: 0
   m_Name: EnemyExplosion
   m_TagString: Enemy
@@ -207,35 +211,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &5670138337406979253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5670138337406979254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 238fe6da56079914f9356ff3b52aecbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyState:
-    hp: 60
-    moveSpeed: 2
-    rotateSpeed: 3
-    startChasingDistance: 100
-    stopChasingDistance: 100
-    startAttackingDistance: 2
-    stopAttackingDistance: 3
-    explosionWaitingTime: 1
-    explosionDamage: 25
-    explosionDistance: 4
-    isDead: 0
-    isExploded: 0
-  GlowObj: {fileID: 5670138338211652496}
-  objectPoolTagParticleSystemExplosion: ParticleSystemExplosion
-  objectPoolTagParticleSystemEnemyDeath: ParticleSystemEnemyDeath
-  modelAnimator: {fileID: 5670138338578596211}
 --- !u!136 &1776634292
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -272,6 +247,89 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8275669782284254900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670138337406979254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6adb52aaf2f7fa543b5c2bc6c703879f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyInfo:
+    hp: 100
+    moveSpeed: 2
+    rotateSpeed: 3
+    startChasingDistance: 100
+    stopChasingDistance: 100
+    startAttackingDistance: 2
+    stopAttackingDistance: 3
+    explosionWaitingTime: 1
+    explosionDamage: 25
+    explosionDistance: 4
+    isDead: 0
+    isExploded: 0
+  GlowObj: {fileID: 5670138338211652496}
+  objectPoolTagParticleSystemExplosion: ParticleSystemExplosion
+  objectPoolTagParticleSystemEnemyDeath: ParticleSystemEnemyDeath
+  modelAnimator: {fileID: 5670138338578596211}
+--- !u!114 &1401441915122675128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670138337406979254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d5cdf97bd05a24fb92942c83384bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: 4111574475602110449}
+--- !u!114 &2195253480749829900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670138337406979254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199e3e2f8b84bcd4985d9d321f114fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyChasingState: {fileID: 7827727712382213088}
+--- !u!114 &7827727712382213088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670138337406979254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8d5e66f73426e48a0dedaa561879bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAttackingState: {fileID: 2195253480749829900}
+  enemyIdlingState: {fileID: 4111574475602110449}
+  modelAnimator: {fileID: 5670138338578596211}
+--- !u!114 &4111574475602110449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670138337406979254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6640a006b114c9e48998ab142b841c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyChasingState: {fileID: 7827727712382213088}
 --- !u!1 &5670138337691711291
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,15 +684,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
---- !u!4 &5670138338587963011 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21,
-    type: 3}
-  m_PrefabInstance: {fileID: 5670138338588095507}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5670138338578596211 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21,
+    type: 3}
+  m_PrefabInstance: {fileID: 5670138338588095507}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5670138338587963011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400016, guid: 8c65c5b5c1025c543b188d2ca32b8e21,
     type: 3}
   m_PrefabInstance: {fileID: 5670138338588095507}
   m_PrefabAsset: {fileID: 0}

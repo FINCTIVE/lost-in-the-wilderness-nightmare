@@ -41,6 +41,6 @@ public class PlayerTemperatureSystem : MonoBehaviour
             damage = (int)(maxColdDamagePerSec * coldRate); // 一次函数
         };
         PlayerController.player.HurtByDamagePerSec(damage, DamageFrom.Cold);
-        PlayerController.player.playerState.coldRate = coldRate;
+        PlayerController.player.playerInfo.coldRate = coldRate;
     }
 }

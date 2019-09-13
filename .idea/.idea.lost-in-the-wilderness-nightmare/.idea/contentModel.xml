@@ -10,8 +10,13 @@
         <e p="GameProject" t="Include">
           <e p="Scripts" t="Include">
             <e p="Enemy" t="Include">
+              <e p="BaseState.cs" t="Include" />
+              <e p="EnemyAttackingState.cs" t="Include" />
+              <e p="EnemyChasingState.cs" t="Include" />
               <e p="EnemyController.cs" t="Include" />
-              <e p="EnemyState.cs" t="Include" />
+              <e p="EnemyIdlingState.cs" t="Include" />
+              <e p="EnemyInfo.cs" t="Include" />
+              <e p="EnemyStateMachine.cs" t="Include" />
             </e>
             <e p="Manager" t="Include">
               <e p="LevelManager.cs" t="Include" />
@@ -28,7 +33,7 @@
               <e p="BulletTrail.cs" t="Include" />
               <e p="CameraFollow.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
-              <e p="PlayerState.cs" t="Include" />
+              <e p="PlayerInfo.cs" t="Include" />
               <e p="PlayerTemperatureSystem.cs" t="Include" />
               <e p="PlayerUIFollow.cs" t="Include" />
               <e p="Props.cs" t="Include" />

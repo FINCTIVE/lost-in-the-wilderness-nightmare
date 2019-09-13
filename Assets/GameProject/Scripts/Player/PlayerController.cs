@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController player;
     public static Transform playerTransform;
-    public PlayerState playerState;
+    public PlayerInfo playerInfo;
     
     [Tooltip("辅助瞄准的最远距离")]public float aimingDistance; // 
     [Tooltip("辅助瞄准视角大小")]public float aimingAngle;
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isLooking)
         {
-            _rigidbody.MovePosition(_transform.position + Time.deltaTime * playerState.moveSpeed * moveDirXz);
+            _rigidbody.MovePosition(_transform.position + Time.deltaTime * playerInfo.moveSpeed * moveDirXz);
         }
 
         // &&左边第一个条件保证玩家松手的时候一定不会转动角色
@@ -234,12 +234,12 @@ public class PlayerController : MonoBehaviour
 
     public void Hurt(int damage, DamageFrom attacker)
     {
-        if (playerState.isDead) return;
+        if (playerInfo.isDead) return;
 
-        playerState.hp -= damage;
-        if (playerState.hp <= 0)
+        playerInfo.hp -= damage;
+        if (playerInfo.hp <= 0)
         {
-            playerState.hp = 0;
+            playerInfo.hp = 0;
             Die(attacker);
         }
     }
@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
     
     public void Die(DamageFrom attacker)
     {
-        playerState.isDead = true;
+        playerInfo.isDead = true;
         //死亡过程硬编码
         _rigidbody.constraints = RigidbodyConstraints.None; //取消限制 自由倒地
         _rigidbody.AddForce(Vector3.up * (-1f) + Vector3.right * (-2f), ForceMode.Impulse); //推一把

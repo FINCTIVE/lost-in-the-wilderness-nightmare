@@ -1,6 +1,6 @@
 ﻿using System;
 [System.Serializable]
-public class PlayerState
+public class PlayerInfo
 {
     private int _hp = 100;
     public event Action<int> OnPlayerHpChange;
