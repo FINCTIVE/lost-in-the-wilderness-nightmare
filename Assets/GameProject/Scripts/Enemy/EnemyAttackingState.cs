@@ -13,6 +13,11 @@ public class EnemyAttackingState : BaseState
         _enemyController = GetComponent<EnemyController>();
     }
     private float _explosionTimer = 0f;
+    public override void OnStateStart()
+    {
+        _enemyController.SetBodyFlicker(true);
+        _explosionTimer = 0f;
+    }
     public override BaseState Tick()
     {
         Vector3 targetPos = PlayerController.playerTransform.position;
@@ -20,17 +25,18 @@ public class EnemyAttackingState : BaseState
         
         if(distanceSqr > _enemyController.enemyInfo.stopAttackingDistance*_enemyController.enemyInfo.stopAttackingDistance)
         {
-            _enemyController.SetBodyFlicker(false);
-            _explosionTimer = 0f;
             return enemyChasingState;
         }
 
         _explosionTimer += Time.deltaTime;
         if(_explosionTimer > _enemyController.enemyInfo.explosionWaitingTime)
         {
-            _enemyController.Explode();
+            _enemyController.Explode(); // 该敌人死亡，之后的逻辑由对象池相关代码掌控；而不是状态机代码
         }
-
         return this;
+    }
+    public override void OnStateExit()
+    {
+        _enemyController.SetBodyFlicker(false);
     }
 }

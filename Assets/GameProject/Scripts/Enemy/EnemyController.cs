@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour, IPooledObject
     public Animator modelAnimator;
     private Rigidbody _rb;
     private NavMeshAgent _navMeshAgent;
-    private EnemyStateMachine _enemyStateMachine;
+    private StateMachine _stateMachine;
     #endregion
 
     private void Awake()
@@ -27,8 +27,8 @@ public class EnemyController : MonoBehaviour, IPooledObject
         _initialEnemyInfo.CopyValues(enemyInfo);
         
         _rb = GetComponent<Rigidbody>();
-        _enemyStateMachine = GetComponent<EnemyStateMachine>();
-        modelAnimator = transform.Find("Model").GetComponent<Animator>();
+        _stateMachine = GetComponent<StateMachine>();
+//        modelAnimator = transform.Find("Model").GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.updatePosition = false;
         _navMeshAgent.updateRotation = false;
@@ -37,12 +37,30 @@ public class EnemyController : MonoBehaviour, IPooledObject
     public void OnObjectSpawn()
     {
         enemyInfo.CopyValues(_initialEnemyInfo);
-        _enemyStateMachine.currentState = _enemyStateMachine.defaultState;
+        _stateMachine.currentState = _stateMachine.defaultState;
+        SetBodyFlicker(false);
     }
 
-    public void OnObjectDestroy()
+    public void OnObjectDestroy(){}
+    
+    private static readonly int AnimMove = Animator.StringToHash("move");
+    public void MoveToTarget(Vector3 targetPos)
     {
+        _navMeshAgent.SetDestination(targetPos); // TODO:降低调用频率优化性能
+        var myPosition = transform.position;
+        _navMeshAgent.nextPosition = myPosition;
+
+        float distanceSqr = (targetPos - myPosition).sqrMagnitude;
+        Vector3 dirXZ = _navMeshAgent.desiredVelocity;
+        dirXZ.y = 0;
+        if (distanceSqr > 1) { dirXZ = Vector3.Normalize(dirXZ); }
         
+        Quaternion rot = dirXZ.sqrMagnitude > float.Epsilon ? 
+            Quaternion.LookRotation(dirXZ, transform.up)
+            : Quaternion.identity;
+        _rb.MoveRotation(Quaternion.Lerp(_rb.rotation, rot,enemyInfo.rotateSpeed * Time.deltaTime));
+        _rb.MovePosition(_rb.position + enemyInfo.moveSpeed*Time.deltaTime*transform.forward);
+        modelAnimator.SetFloat(AnimMove, dirXZ.magnitude);
     }
     private Coroutine _bodyFlickerCoro;
     public void SetBodyFlicker(bool isFlickering)
@@ -53,17 +71,18 @@ public class EnemyController : MonoBehaviour, IPooledObject
         }
         else
         {
-            StopCoroutine(_bodyFlickerCoro); // TODO: StopCoroutine后_bodyFlickerCoro还在不在？
             GlowObj.SetActive(false); //防止闪烁时定格在发光状态
+            if(_bodyFlickerCoro != null)
+                StopCoroutine(_bodyFlickerCoro); // TODO: StopCoroutine后_bodyFlickerCoro还在不在？
         }
     }
     private float flickerGapTime = 0.2f;
-    IEnumerator BodyFlicker()
+    private IEnumerator BodyFlicker()
     {
         bool isLighted = false;
         while(true)
         {
-            GlowObj.SetActive(isLighted); // 这里可能可以通过修改material参数来实现淡入淡出，SetActive可能会有多余的性能损耗
+            GlowObj.SetActive(isLighted); // TODO:这里可能可以通过修改material参数来实现淡入淡出，SetActive可能会有多余的性能损耗
             isLighted = !isLighted;
             yield return new WaitForSeconds(flickerGapTime);
         }
@@ -72,7 +91,7 @@ public class EnemyController : MonoBehaviour, IPooledObject
     public void Explode()
     {
         var myPosition = transform.position;
-        ObjectPooler.Instance.SpawnFromPool(objectPoolTagParticleSystemExplosion, myPosition + Vector3.up*1f, Quaternion.identity);
+        ObjectPooler.Instance.SpawnFromPool(objectPoolTagParticleSystemExplosion, myPosition + Vector3.up, Quaternion.identity);
 
         Collider[] hitColliders = Physics.OverlapSphere(myPosition, enemyInfo.startAttackingDistance);
         for(int i=0; i<hitColliders.Length; ++i)

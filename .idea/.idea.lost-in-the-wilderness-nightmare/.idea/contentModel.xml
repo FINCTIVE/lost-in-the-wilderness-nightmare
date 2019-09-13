@@ -16,7 +16,7 @@
               <e p="EnemyController.cs" t="Include" />
               <e p="EnemyIdlingState.cs" t="Include" />
               <e p="EnemyInfo.cs" t="Include" />
-              <e p="EnemyStateMachine.cs" t="Include" />
+              <e p="StateMachine.cs" t="Include" />
             </e>
             <e p="Manager" t="Include">
               <e p="LevelManager.cs" t="Include" />

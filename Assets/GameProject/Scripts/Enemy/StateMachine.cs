@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour
+public class StateMachine : MonoBehaviour
 {
     public BaseState defaultState;
     [HideInInspector]public BaseState currentState;
@@ -16,6 +16,11 @@ public class EnemyStateMachine : MonoBehaviour
     void FixedUpdate()
     {
         BaseState nextStateType = currentState.Tick();
+        if (nextStateType != currentState)
+        {
+            nextStateType.OnStateStart();
+            currentState.OnStateExit();
+        }
         currentState = nextStateType;
     }
 }
