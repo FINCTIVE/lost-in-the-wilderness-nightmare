@@ -36,6 +36,7 @@ public class EnemyChasingState : BaseState
         Vector3 dirXZ = _navMeshAgent.desiredVelocity;
         dirXZ.y = 0;
         if (distanceSqr > 1) { dirXZ = Vector3.Normalize(dirXZ); }
+        
         if(distanceSqr < _enemyController.enemyInfo.startAttackingDistance*_enemyController.enemyInfo.startAttackingDistance)
         {
             _enemyController.SetBodyFlicker(true);
@@ -53,7 +54,6 @@ public class EnemyChasingState : BaseState
             : Quaternion.identity;
         _rb.MoveRotation(Quaternion.Lerp(_rb.rotation, rot,_enemyController.enemyInfo.rotateSpeed * Time.deltaTime));
         _rb.MovePosition(_rb.position + _enemyController.enemyInfo.moveSpeed*Time.deltaTime*transform.forward);
-
         modelAnimator.SetFloat(AnimMove, dirXZ.magnitude);
 
         return this;
