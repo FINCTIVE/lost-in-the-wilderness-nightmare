@@ -9,7 +9,8 @@ public class TestCode : MonoBehaviour
     public bool isTesting = false;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && isTesting)
+        #if UNITY_EDITOR
+        if (isTesting && Input.GetKeyDown(KeyCode.I))
         {
             var _weapons = PlayerController.player.GetComponent<Backpack>().weapons;
             foreach (var w in _weapons)
@@ -19,5 +20,6 @@ public class TestCode : MonoBehaviour
 
             PlayerController.player.playerInfo.hp = 10000000;
         }
+        #endif
     }
 }
