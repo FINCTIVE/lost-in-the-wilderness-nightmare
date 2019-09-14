@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour, IPooledObject
     public EnemyInfo enemyInfo;
     private EnemyInfo _initialEnemyInfo;
     
-    public Color normalAlbedoColor;
-    public Color glowingAlbedoColor;
+    [ColorUsageAttribute(true,true)]public Color normalEmmisionColor;
+    [ColorUsageAttribute(true,true)]public Color glowingEmissionColor;
     public SkinnedMeshRenderer[] enemyMeshRenderer;
     
     public string objectPoolTagParticleSystemExplosion = "ParticleSystemExplosion";
@@ -75,8 +75,7 @@ public class EnemyController : MonoBehaviour, IPooledObject
             //防止闪烁时定格在发光状态
             for (int i = 0; i < enemyMeshRenderer.Length; ++i)
             {
-                enemyMeshRenderer[i].material.SetColor(EnemyColorCache, normalAlbedoColor);
-                enemyMeshRenderer[i].material.DisableKeyword("_EMISSION");
+                enemyMeshRenderer[i].material.SetColor(EnemyColorCache, normalEmmisionColor);
             }
             if (_bodyFlickerCoro != null)
             {
@@ -85,7 +84,7 @@ public class EnemyController : MonoBehaviour, IPooledObject
         }
     }
     private float flickerGapTime = 0.2f;
-    private static readonly int EnemyColorCache = Shader.PropertyToID("_Color");
+    private static readonly int EnemyColorCache = Shader.PropertyToID("_EmissionColor");
 
     private IEnumerator BodyFlicker()
     {
@@ -96,16 +95,14 @@ public class EnemyController : MonoBehaviour, IPooledObject
             {
                 for (int i = 0; i < enemyMeshRenderer.Length; ++i)
                 {
-                    enemyMeshRenderer[i].material.SetColor(EnemyColorCache, glowingAlbedoColor);
-                    enemyMeshRenderer[i].material.EnableKeyword("_EMISSION");
+                    enemyMeshRenderer[i].material.SetColor(EnemyColorCache, glowingEmissionColor);
                 }
             }
             else
             {
                 for (int i = 0; i < enemyMeshRenderer.Length; ++i)
                 {
-                    enemyMeshRenderer[i].material.SetColor(EnemyColorCache, normalAlbedoColor);
-                    enemyMeshRenderer[i].material.DisableKeyword("_EMISSION");
+                    enemyMeshRenderer[i].material.SetColor(EnemyColorCache, normalEmmisionColor);
                 }
             }
 

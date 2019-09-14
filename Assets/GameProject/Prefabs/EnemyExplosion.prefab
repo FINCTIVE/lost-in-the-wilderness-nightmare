@@ -116,8 +116,8 @@ MonoBehaviour:
     explosionDistance: 4
     isDead: 0
     isExploded: 0
-  normalAlbedoColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
-  glowingAlbedoColor: {r: 0.6320754, g: 0.11627812, b: 0.11627804, a: 1}
+  normalEmmisionColor: {r: 0, g: 0, b: 0, a: 0}
+  glowingEmissionColor: {r: 1.5157166, g: 0.32097527, b: 0, a: 1}
   enemyMeshRenderer:
   - {fileID: 5670138338574401459}
   - {fileID: 5670138338574401457}
@@ -189,10 +189,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5670138337406979256}
     m_Modifications:
-    - target: {fileID: 100016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Name
-      value: Model
-      objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 13700000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 13700006, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 13700004, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 13700010, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 13700008, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
     - target: {fileID: 9500000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
       propertyPath: m_Controller
       value: 
@@ -241,30 +261,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 13700002, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700006, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700004, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700010, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
-    - target: {fileID: 13700008, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b62f777c093e4f54faad6d794f91fb9a, type: 2}
+    - target: {fileID: 100016, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c65c5b5c1025c543b188d2ca32b8e21, type: 3}
 --- !u!4 &5670138338587963011 stripped
