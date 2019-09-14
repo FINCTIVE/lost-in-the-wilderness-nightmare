@@ -154,7 +154,8 @@ public class LevelManager : MonoBehaviour
     #region UI调用的方法
     public void Restart()
     {
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+//        SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
     public void SetGameState(bool isStopped)
     {

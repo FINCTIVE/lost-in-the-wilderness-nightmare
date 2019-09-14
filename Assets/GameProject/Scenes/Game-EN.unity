@@ -6277,8 +6277,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Keyboard\uFF1AMove-WSAD  |  Fire-J  |  Swap Weapon-Q/E | Aim-L\uFF08Holding\uFF09\n\nGamepad\uFF1AMove-Left
-    Stick | Swap Weapon-X/Y | Fire-R2 | Aim-A\uFF08Holding\uFF09"
+  m_Text: 'Keyboard:Move-WSAD  |  Fire-J  |  Swap Weapon-Q/E | Aim-L(Holding)
+
+
+    Gamepad:Move-Left Stick | Swap Weapon-X/Y | Fire-R2 | Aim-A(Holding)'
 --- !u!222 &352508912
 CanvasRenderer:
   m_ObjectHideFlags: 0
