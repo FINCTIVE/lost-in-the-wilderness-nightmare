@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,11 +10,12 @@ public class EnemyController : MonoBehaviour, IPooledObject
     public EnemyInfo enemyInfo;
     private EnemyInfo _initialEnemyInfo;
     
-    #region GameObject
-    public GameObject GlowObj;
+    public Color normalAlbedoColor;
+    public Color glowingAlbedoColor;
+    public SkinnedMeshRenderer[] enemyMeshRenderer;
+    
     public string objectPoolTagParticleSystemExplosion = "ParticleSystemExplosion";
     public string objectPoolTagParticleSystemEnemyDeath = "ParticleSystemEnemyDeath";
-    #endregion
     #region Component
     public Animator modelAnimator;
     private Rigidbody _rb;
@@ -46,10 +48,10 @@ public class EnemyController : MonoBehaviour, IPooledObject
     private static readonly int AnimMove = Animator.StringToHash("move");
     public void MoveToTarget(Vector3 targetPos)
     {
-        _navMeshAgent.SetDestination(targetPos); // TODO:降低调用频率优化性能
+        _navMeshAgent.SetDestination(targetPos); // 如果距离较长，每帧重新计算路径会消耗过多性能
+        
         var myPosition = transform.position;
         _navMeshAgent.nextPosition = myPosition;
-
         float distanceSqr = (targetPos - myPosition).sqrMagnitude;
         Vector3 dirXZ = _navMeshAgent.desiredVelocity;
         dirXZ.y = 0;
@@ -71,18 +73,43 @@ public class EnemyController : MonoBehaviour, IPooledObject
         }
         else
         {
-            GlowObj.SetActive(false); //防止闪烁时定格在发光状态
-            if(_bodyFlickerCoro != null)
-                StopCoroutine(_bodyFlickerCoro); // TODO: StopCoroutine后_bodyFlickerCoro还在不在？
+            //防止闪烁时定格在发光状态
+            for (int i = 0; i < enemyMeshRenderer.Length; ++i)
+            {
+                enemyMeshRenderer[i].material.SetColor(EnemyColorCache, normalAlbedoColor);
+                enemyMeshRenderer[i].material.DisableKeyword("_EMISSION");
+            }
+            if (_bodyFlickerCoro != null)
+            {
+                StopCoroutine(_bodyFlickerCoro);
+            }
         }
     }
     private float flickerGapTime = 0.2f;
+    private static readonly int EnemyColorCache = Shader.PropertyToID("_Color");
+
     private IEnumerator BodyFlicker()
     {
         bool isLighted = false;
         while(true)
         {
-            GlowObj.SetActive(isLighted); // TODO:这里可能可以通过修改material参数来实现淡入淡出，SetActive可能会有多余的性能损耗
+            if (isLighted)
+            {
+                for (int i = 0; i < enemyMeshRenderer.Length; ++i)
+                {
+                    enemyMeshRenderer[i].material.SetColor(EnemyColorCache, glowingAlbedoColor);
+                    enemyMeshRenderer[i].material.EnableKeyword("_EMISSION");
+                }
+            }
+            else
+            {
+                for (int i = 0; i < enemyMeshRenderer.Length; ++i)
+                {
+                    enemyMeshRenderer[i].material.SetColor(EnemyColorCache, normalAlbedoColor);
+                    enemyMeshRenderer[i].material.DisableKeyword("_EMISSION");
+                }
+            }
+
             isLighted = !isLighted;
             yield return new WaitForSeconds(flickerGapTime);
         }
