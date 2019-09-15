@@ -10,6 +10,13 @@
 
 我的联系邮箱：finctive@qq.com
 
+## Demo
+
+在线(EN): https://finctive.github.io/lost-in-the-wilderness-nightmare/
+
+本地版本下载(CH): https://github.com/FINCTIVE/lost-in-the-wilderness-nightmare/releases
+
+
 ## 你可能感兴趣的功能
 
 * 对象池：多种对象存储由一个组件管理。
