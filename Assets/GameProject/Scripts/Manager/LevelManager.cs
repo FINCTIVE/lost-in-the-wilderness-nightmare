@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
         while(gameRoundIndex < gameRoundInfos.Length)
         {
             gameRoundCoro = StartCoroutine(GameRound(gameRoundInfos[gameRoundIndex]));
-            yield return gameRoundCoro;
+            yield return gameRoundCoro; // 等待gameRoundCoro执行完毕后，继续往下执行
             ++gameRoundIndex;
         }
     }
@@ -74,9 +74,16 @@ public class LevelManager : MonoBehaviour
         spawnEnemyCoro  = StartCoroutine(SpawnEnemy(info.enemySpawnTime, 2f));
         spawnPropsCoro  = StartCoroutine(SpawnProps(info.propsSpawnTime, 2f, info.propsAmmoPistal, info.propsAmmoRifle));
         yield return new WaitForSeconds(info.roundTime);
+        // 结束触发的协程，否则他们会一直执行下去
         StopCoroutine(spawnEnemyCoro);
         StopCoroutine(spawnPropsCoro);
     }
+    /// <summary>
+    /// 无限循环地调用自身，不断生成敌人。使用spawnEnemyCoro保存当前的Coroutine对象。
+    /// </summary>
+    /// <param name="waitingTimeBase">在此基础上进行随机计算</param>
+    /// <param name="randomTime">时间随机增加或减少的范围</param>
+    /// <returns></returns>
     IEnumerator SpawnEnemy(float waitingTimeBase, float randomTime)
     {
         yield return new WaitForSeconds(waitingTimeBase + Random.Range(-1f*randomTime, randomTime));
@@ -89,8 +96,18 @@ public class LevelManager : MonoBehaviour
         GameObject enmey = ObjectPooler.Instance.SpawnFromPool("EnemyExplosion",EnemySpawnPoints[index].position + Vector3.up * 5f, rot);
         if(enmey) enmey.GetComponent<Rigidbody>().AddForce(Vector3.up *(-30f), ForceMode.VelocityChange);
         // ObjectPool队列有可能是空的
+        
+        // 启动下一次生成过程
         spawnEnemyCoro = StartCoroutine(SpawnEnemy(waitingTimeBase, randomTime));
     }
+    /// <summary>
+    /// 无限循环地调用自身，不断生成补给箱。使用spawnPropsCoro保存当前的Coroutine对象。
+    /// </summary>
+    /// <param name="waitingTimeBase">在此基础上进行随机计算</param>
+    /// <param name="randomTime">时间随机增加或减少的范围</param>
+    /// <param name="propsAmmoPistal"></param>
+    /// <param name="propsAmmoRifle"></param>
+    /// <returns></returns>
     IEnumerator SpawnProps(float waitingTimeBase, float randomTime, int propsAmmoPistal, int propsAmmoRifle)
     {
         yield return new WaitForSeconds(waitingTimeBase + Random.Range(-1f*randomTime, randomTime));
