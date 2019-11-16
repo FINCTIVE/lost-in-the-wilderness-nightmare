@@ -30,7 +30,6 @@
             </e>
             <e p="Player" t="Include">
               <e p="Backpack.cs" t="Include" />
-              <e p="BulletTrail.cs" t="Include" />
               <e p="CameraFollow.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
               <e p="PlayerInfo.cs" t="Include" />
@@ -45,6 +44,7 @@
               <e p="Weapon.cs" t="Include" />
             </e>
             <e p="Scene" t="Include">
+              <e p="BulletTrail.cs" t="Include" />
               <e p="Campfire.cs" t="Include" />
               <e p="CampfireManager.cs" t="Include" />
               <e p="KillingZone.cs" t="Include" />

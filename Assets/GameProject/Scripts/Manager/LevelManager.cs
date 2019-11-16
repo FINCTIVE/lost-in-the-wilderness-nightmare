@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
         while(gameRoundIndex < gameRoundInfos.Length)
         {
             gameRoundCoro = StartCoroutine(GameRound(gameRoundInfos[gameRoundIndex]));
-            yield return gameRoundCoro;             
+            yield return gameRoundCoro;
             ++gameRoundIndex;
         }
     }
