@@ -209,7 +209,6 @@ public class PlayerController : MonoBehaviour
         _backpack.weaponInHand.ammo--;
     }
 
-    //切换武器 一定会换到有子弹的武器（空手状态下子弹无限多）
     private float targetAnimValueOfHand;
     public void SwapWeapon(bool isNextWeapon)
     {
