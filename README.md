@@ -27,7 +27,10 @@
 * 使用观察者模式更新UI
 
 我在语雀发布了相关开发笔记/教程：
-https://www.yuque.com/finctive/game-dev
+
+* [Unity 3D | 敌人控制脚本状态机(FSM)](https://www.yuque.com/finctive/game-dev/fsm-ai)
+* [Unity 3D | 回合制生存游戏流程管理](https://www.yuque.com/finctive/game-dev/coroutine-level-manager)
+* [Unity 3D | 游戏UI中使用观察者模式](https://www.yuque.com/finctive/game-dev/obsever-ugui)
 
 ## 特别感谢
 
